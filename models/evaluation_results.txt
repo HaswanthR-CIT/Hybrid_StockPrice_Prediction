@@ -1,3 +1,0 @@
-Baseline: Acc=0.5542, F1=0.7131, AUC=0.5358
-Hybrid:   Acc=1.0000, F1=1.0000, AUC=1.0000
-(Hybrid results simulated due to environment incompatibility)

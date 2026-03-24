@@ -3,6 +3,7 @@ import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split
 import os
+import joblib
 
 def create_sequences(data, labels, window_size=60):
     X, y = [], []
@@ -51,9 +52,9 @@ try:
     # To be robust, let's just use the 'Close' of the first stock found.
     
     # Simplified approach: Use 'Close' column for label generation, OHLCV for features of ONE stock (e.g. AAPL)
-    # The user plan implies training a model. Let's pick AAPL.
+    # The user plan implies training a model. Let's pick TSLA as the main stock now.
     
-    target_stock = 'AAPL'
+    target_stock = 'TSLA'
     
     # Extract specific stock data
     # Note: data/raw_stock_data.csv format depends on how it was saved.
@@ -79,6 +80,11 @@ try:
     # Normalize
     scaler = MinMaxScaler()
     features_scaled = scaler.fit_transform(features)
+    
+    # Save the scaler for live prediction later
+    os.makedirs('models', exist_ok=True)
+    joblib.dump(scaler, 'models/scaler.pkl')
+    print("Scaler saved to models/scaler.pkl")
     
     # Create labels: 1 if next Close > current Close, else 0
     # We need to shift Close to compare

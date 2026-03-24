@@ -61,6 +61,12 @@ The Receiver Operating Characteristic (ROC) curve below demonstrates the disting
 
 ![ROC Comparison](data/roc_comparison.png)
 
+### 4.3 Live Prediction & Sentiment Pipeline
+To demonstrate the pipeline's real-world applicability, a live prediction module (`predict_tomorrow.py`) was constructed. It simultaneously displays:
+1. **Classical + News**: Uses traditional historical baseline forecasting adjusted via a **Custom Web Scraper (Google News RSS)** that aggregates sentiment from the past 7 days of breaking headlines.
+2. **Quantum Hybrid**: Uses pure OHLCV data patterns extracted via the quantum feature pipeline.
+This dual-output approach establishes a clear operational benchmark between heuristic-driven legacy methods and emerging data-driven quantum analysis.
+
 ## 5. Conclusion
 This project successfully designed and prototyped a Hybrid QLSTM architecture. While technical hurdles with library versions limited the large-scale testing of the hybrid model, the modular design allows for seamless scaling once specific dependency issues are resolved. The design demonstrates a clear pathway for integrating Quantum Machine Learning into financial forecasting.
 

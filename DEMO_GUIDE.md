@@ -16,7 +16,7 @@
   - `models/`: Saved trained weights.
 
 ### Step 2: Data Pipeline (Live Run)
-**Say**: "First, we fetch and preprocess real market data for Apple and Tesla."
+**Say**: "First, we fetch and preprocess real market data for Tesla."
 **Run**:
 ```bash
 python scripts/fetch_data.py
@@ -60,4 +60,16 @@ python scripts/evaluate_models.py
 - Open `data/roc_comparison.png` (generated image).
 - **Explain**: "The ROC curve shows the model's ability to distinguish Up vs Down movements."
 - Open `models/evaluation_results.txt`. Discuss the Accuracy/F1 scores.
+
+### Step 7: Live Real-Time Prediction & News Analysis (Grand Finale)
+**Say**: "Finally, evaluations on historical data are great, but the true test is applying it to the real world today. We process the very latest, real-time data for Tesla to predict tomorrow's stock performance. We also actively **web-scrape** the past 7 days of Google News headlines to run a parallel Classical+News sentiment prediction."
+**Run**:
+```bash
+python scripts/predict_tomorrow.py
+```
+**Observe**:
+- Show the terminal explicitly printing two predictions:
+  1. **CLASSICAL METHOD + NEWS ANALYSIS**: How a standard model predicts when influenced by scraping the past week of breaking news.
+  2. **QUANTUM-LSTM HYBRID MODEL**: How pure quantum entanglement patterns interpret the core OHLCV dataset.
+- This comparison demonstrates the functional contrast between news-driven classical heuristics and purely dataset-driven quantum frameworks.
 

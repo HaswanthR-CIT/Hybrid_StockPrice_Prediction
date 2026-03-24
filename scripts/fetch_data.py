@@ -3,15 +3,18 @@ import pandas as pd
 import os
 
 print("Fetching data...")
-stocks = ['AAPL', 'TSLA']
-start_date = '2019-01-01'
-end_date = '2024-01-01'
 
 try:
-    data = yf.download(stocks, start=start_date, end=end_date)
+    # Use 'max' period to get historical and real-time data up to today
+    data = yf.download('TSLA', period='max')
     if data.empty:
         print("Warning: No data fetched.")
     else:
+        # yfinance returns flat columns for a single ticker.
+        # We enforce a MultiIndex so preprocess_data.py parses it correctly
+        if not isinstance(data.columns, pd.MultiIndex):
+            data.columns = pd.MultiIndex.from_product([data.columns, ['TSLA']])
+            
         print("Data fetched. Shape:", data.shape)
         output_path = 'data/raw_stock_data.csv'
         os.makedirs(os.path.dirname(output_path), exist_ok=True)

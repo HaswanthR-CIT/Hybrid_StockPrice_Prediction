@@ -4,10 +4,11 @@ A Hybrid Quantum-Classical Machine Learning project that integrates Variational 
 
 ## 📌 Project Overview
 - **Goal**: Predict if the stock price will go **UP** or **DOWN** the next day.
-- **Data**: Historical data (OHLCV) for AAPL and TSLA.
+- **Data**: Live real-time and historical data (OHLCV) for TSLA.
 - **Models**:
   1.  **Classical LSTM**: Standard Deep Learning baseline.
   2.  **Hybrid QLSTM**: VQC (PennyLane) + LSTM (TensorFlow).
+  3.  **Live Classical + News**: Live prediction pipeline that offsets the Baseline LSTM score with real-time news sentiment gathered via **Custom Web Scraping** (Google News RSS, past 7 days).
 
 ## 📂 Structure
 - `data/`: Datasets and plots.
@@ -57,6 +58,14 @@ Generate performance metrics and ROC curves:
 python scripts/evaluate_models.py
 # Results saved to models/evaluation_results.txt
 # Plot saved to data/roc_comparison.png
+```
+
+### 6. Make a Live Prediction (Real-Time)
+Fetch today's real-time market data for TSLA and predict tomorrow's movement:
+```bash
+python scripts/fetch_data.py
+python scripts/preprocess_data.py
+python scripts/predict_tomorrow.py
 ```
 
 ## ⚠️ Known Limitations
